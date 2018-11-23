@@ -1,5 +1,3 @@
-import copy
-
 class OffMapException(Exception):
     pass
 
