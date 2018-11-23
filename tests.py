@@ -44,5 +44,12 @@ class TestMapMethods(unittest.TestCase):
         self.assertEqual(m2.getBox(8),['1', '.', '.', '7', '8', '.', '4', '.', '5'])
         self.assertRaises(OffMapException, lambda: m2.getBox(9))
 
+    def test_prepare(self):
+        m2 = Map("map6.txt")
+        m2.loadMap()
+        m2.prepare()
+        #print(m2.tiles[1])
+        #print(m2)
+        pass
 if __name__ == '__main__':
     unittest.main()
