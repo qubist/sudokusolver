@@ -66,6 +66,13 @@ class Map:
             x = xStart
         return out
 
+    def prepare(self):
+        for y in self.tiles:
+            x = 0
+            while x < 9:
+                if y[x] == ".": y[x] = "123456789"
+                x += 1
+
     # print out a map pretty
     def __str__(self):
         out = "\n"
