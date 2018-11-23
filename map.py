@@ -80,7 +80,8 @@ class Map:
         for x in self.tiles:
             v = 1 # vertical lines
             for y in x:
-                out += f"{y}"
+                if len(y) != 1: out += "."
+                else: out += f"{y}"
                 if v%3 == 0 and v <= 8:
                     out += " | "
                 v += 1
