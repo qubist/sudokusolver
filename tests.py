@@ -117,5 +117,37 @@ class TestBoardMethods(unittest.TestCase):
         self.assertEqual(m2.removeImpossibles(1,0),8)
         self.assertEqual(m2.getTile(1,0), "4")
 
+    # def test_removeAll(self):
+    #     b = Board("board6.txt")
+    #     b.loadBoard()
+    #     b.prepare()
+    #     b.removeAll()
+    def test_solveHard(self):
+        b = Board("board103.txt")
+        b.loadBoard()
+        b.prepare()
+        b.solve(True)
+        self.assertEqual(f"{b}",
+'''
+ 4 7 1 | 5 6 9 | 3 8 2
+ 9 5 2 | 3 4 8 | 1 6 7
+ 3 6 8 | 2 1 7 | 4 9 5
+ ------+-------+------
+ 8 9 5 | 1 3 6 | 7 2 4
+ 2 4 6 | 8 7 5 | 9 3 1
+ 7 1 3 | 9 2 4 | 8 5 6
+ ------+-------+------
+ 6 2 4 | 7 8 3 | 5 1 9
+ 5 8 7 | 6 9 1 | 2 4 3
+ 1 3 9 | 4 5 2 | 6 7 8
+'''
+)
+
+    def test_solveZ(self):
+        b = Board("board70.txt")
+        b.loadBoard()
+        b.prepare()
+        b.solve(True)
+
 if __name__ == '__main__':
     unittest.main()
