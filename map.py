@@ -135,12 +135,3 @@ class Map:
             h += 1
             out += "\n"
         return out
-
-
-if __name__ == '__main__':
-    m2 = Map("map6.txt")
-    m2.loadMap()
-    print(m2)
-    print(m2.getRow(2))
-    print(m2.getColumn(2))
-    print(m2.getColumn(0))
