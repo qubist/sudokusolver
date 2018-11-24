@@ -27,6 +27,10 @@ class TestMapMethods(unittest.TestCase):
         self.assertEqual(m2.getRow(2),['.', '.', '5', '.', '.', '.', '6', '.', '.'])
         self.assertEqual(m2.getRow(0),['7', '.', '9', '1', '.', '2', '.', '3', '.'])
         self.assertRaises(OffMapException, lambda: m2.getRow(9))
+        g = Map("map6.txt")
+        g.loadMap()
+        g.prepare()
+        self.assertEqual(g.getRow(8), ['123456789', '7', '123456789', '8', '2', '9', '4', '123456789', '5'])
 
     def test_getColumn(self):
         m2 = Map("map6.txt")
@@ -34,6 +38,11 @@ class TestMapMethods(unittest.TestCase):
         self.assertEqual(m2.getColumn(2),['9', '8', '5', '.', '.', '1', '6', '2', '.'])
         self.assertEqual(m2.getColumn(0),['7', '.', '.', '.', '.', '.', '.', '.', '.'])
         self.assertRaises(OffMapException, lambda: m2.getColumn(9))
+        g = Map("map6.txt")
+        g.loadMap()
+        g.prepare()
+        self.assertEqual(g.getColumn(2), ['9', '8', '5', '123456789', '123456789', '1', '6', '2', '123456789'])
+
 
     def test_getBox(self):
         m2 = Map("map6.txt")
@@ -43,6 +52,10 @@ class TestMapMethods(unittest.TestCase):
         self.assertEqual(m2.getBox(4),['6', '9', '4', '2', '.', '1', '5', '7', '3'])
         self.assertEqual(m2.getBox(8),['1', '.', '.', '7', '8', '.', '4', '.', '5'])
         self.assertRaises(OffMapException, lambda: m2.getBox(9))
+        g = Map("map6.txt")
+        g.loadMap()
+        g.prepare()
+        self.assertEqual(g.getBox(2), ['123456789', '3', '123456789', '2', '123456789', '123456789', '6', '123456789', '123456789'])
 
     def test_prepare(self):
         m2 = Map("map6.txt")
