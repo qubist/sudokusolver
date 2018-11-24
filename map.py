@@ -79,6 +79,9 @@ class Map:
     # returns whether the tile is "sure" (the tile has only one value)
     def isSure(self,tile):
         return len(tile)==1
+
+    def calculateBoxID(self, x,y):
+        return int(y/3)*3 + int(x/3)
     # print out a map pretty
     def __str__(self):
         out = "\n"

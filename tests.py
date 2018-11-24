@@ -58,5 +58,12 @@ class TestMapMethods(unittest.TestCase):
         m2.prepare()
         self.assertEqual(m2.isSure(m2.getTile(0,0)), True)
         self.assertEqual(m2.isSure(m2.getTile(1,0)), False)
+
+    def test_calculateBoxID(self):
+        m = Map("map6.txt")
+        self.assertEqual(m.calculateBoxID(1,2), 0)
+        self.assertEqual(m.calculateBoxID(0,0), 0)
+        self.assertEqual(m.calculateBoxID(7,8), 8)
+        self.assertEqual(m.calculateBoxID(4,5), 4)
 if __name__ == '__main__':
     unittest.main()
