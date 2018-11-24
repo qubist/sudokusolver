@@ -26,6 +26,9 @@ class Map:
             print(f"Could not load map file {self.filename}")
             exit(1)
 
+    # gets tile
+    def getTile(self, x, y): return self.tiles[y][x]
+
     # returns a list of all items in a given row, 0 through 8
     # starting from the top
     def getRow(self, row):
@@ -60,7 +63,7 @@ class Map:
         xEnd = x + 3
         while y < yEnd:
             while x < xEnd:
-                out += self.tiles[y][x]
+                out += self.getTile(x,y)
                 x += 1
             y+= 1
             x = xStart
