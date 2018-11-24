@@ -138,14 +138,14 @@ class Board:
         for x in self.tiles:
             v = 1 # vertical lines
             for y in x:
-                if len(y) != 1: out += "."
-                else: out += f"{y}"
-                #out += f"{y}," # Turn this on to see all possibilities of unsure tiles!
+                # if len(y) != 1: out += "."
+                # else: out += f"{y}"
+                out += f" {y}" # Turn this on to see all possibilities of unsure tiles!
                 if v%3 == 0 and v <= 8:
-                    out += " | "
+                    out += " |"
                 v += 1
             if h%3 == 0 and h <= 8:
-                out += "\n----+-----+----"
+                out += "\n ------+-------+------"
             h += 1
             out += "\n"
         return out
