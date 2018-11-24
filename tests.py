@@ -111,10 +111,10 @@ class TestBoardMethods(unittest.TestCase):
         m2.loadBoard()
         m2.prepare()
         # Nothing should be removed from a sure tile
-        self.assertEqual(m2.removeImpossibles(0,0),0)
+        m2.removeImpossibles(0,0)
         self.assertEqual(m2.getTile(0,0), "7")
         # Impossibles should be removed
-        self.assertEqual(m2.removeImpossibles(1,0),8)
+        m2.removeImpossibles(1,0)
         self.assertEqual(m2.getTile(1,0), "4")
 
     # def test_removeAll(self):
