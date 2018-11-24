@@ -41,12 +41,12 @@ class Map:
 
     # returns a list of all items in a given column, 0 through 8
     # starting from the left
-    def getColumn(self, column):
-        if column > 8:
+    def getColumn(self, x):
+        if x > 8:
             raise OffMapException
         out = []
-        for x in self.tiles:
-            out += x[column]
+        for y in self.tiles:
+            out += [y[x]]
         return out
 
     # Gets a list of all the items in a given box. Boxes like so:
