@@ -9,7 +9,7 @@ class Board:
     def loadBoard(self):
         try:
             file = open(self.filename)
-            y = 0      # y is different than lineno as some lines may be comments
+            y = 0
             for line in file:
                 if (y >= 9):
                     parts = line.split()
@@ -127,6 +127,7 @@ class Board:
             for y in x:
                 if len(y) != 1: out += "."
                 else: out += f"{y}"
+                #out += f"{y}," # Turn this on to see all possibilities of unsure tiles!
                 if v%3 == 0 and v <= 8:
                     out += " | "
                 v += 1
