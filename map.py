@@ -216,9 +216,9 @@ class Board:
         for x in self.tiles:
             v = 1 # vertical lines
             for y in x:
-                # if len(y) != 1: out += "."
-                # else: out += f"{y}"
-                out += f" {y}" # Turn this on to see all possibilities of unsure tiles!
+                if len(y) != 1: out += " ."
+                else: out += f" {y}"
+                #out += f" {y}" # Turn this on instead of the two lines above it to see all possibilities of unsure tiles instead of a "."!
                 if v%3 == 0 and v <= 8:
                     out += " |"
                 v += 1
