@@ -1,5 +1,5 @@
 import unittest
-from sudokusolver import *
+from board import *
 
 class TestBoardMethods(unittest.TestCase):
 
@@ -122,11 +122,11 @@ class TestBoardMethods(unittest.TestCase):
     #     b.loadBoard()
     #     b.prepare()
     #     b.removeAll()
-    def test_solveHard(self):
+    def test_reduceHard(self):
         b = Board("board103.txt")
         b.loadBoard()
         b.prepare()
-        b.solve(True)
+        b.reduce(True)
         self.assertEqual(f"{b}",
 '''
  4 7 1 | 5 6 9 | 3 8 2
@@ -143,11 +143,11 @@ class TestBoardMethods(unittest.TestCase):
 '''
 )
 
-    def test_solveZ(self):
+    def test_reduceZ(self):
         b = Board("board70.txt")
         b.loadBoard()
         b.prepare()
-        b.solve(True)
+        b.reduce(True)
 
 if __name__ == '__main__':
     unittest.main()
