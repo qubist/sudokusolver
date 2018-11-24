@@ -183,7 +183,7 @@ class Board:
                     if counts[possibility] == 1:
                         self.setTile(x,spot,possibility)
 
-    def solve(self, debug=0):
+    def reduce(self, debug=0):
         after = "something"; before = "something else" # to start
         while after != before:
             before = f"{self}"
@@ -207,7 +207,6 @@ class Board:
                     print(after)
                 else:
                     print("no change")
-            print(after)
             # import time; time.sleep(.15) # option for looking cool
 
     # print out a map pretty
