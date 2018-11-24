@@ -1,12 +1,12 @@
-class OffMapException(Exception):
+class OffBoardException(Exception):
     pass
 
-class Map:
+class Board:
     def __init__(self, filename):
         self.filename = filename
         self.tiles = [["\0" for x in range(9)] for y in range(9)]
 
-    def loadMap(self):
+    def loadBoard(self):
         try:
             file = open(self.filename)
             y = 0      # y is different than lineno as some lines may be comments
@@ -36,14 +36,14 @@ class Map:
     # starting from the top
     def getRow(self, row):
         if row > 8:
-            raise OffMapException
+            raise OffBoardException
         return self.tiles[row]
 
     # returns a list of all items in a given column, 0 through 8
     # starting from the left
     def getColumn(self, x):
         if x > 8:
-            raise OffMapException
+            raise OffBoardException
         out = []
         for y in self.tiles:
             out += [y[x]]
@@ -58,7 +58,7 @@ class Map:
     def getBox(self,boxID):
         # check if boxID is valid
         if boxID > 8:
-            raise OffMapException
+            raise OffBoardException
         out = []
         xStart = x = boxID%3*3
         y = int(boxID/3)*3
