@@ -21,6 +21,12 @@ class TestBoardMethods(unittest.TestCase):
 .7. | 829 | 4.5
 ''')
 
+    def test_setTileByBoxIDAndIndex(self):
+        b = Board("board6.txt")
+        b.loadBoard()
+        b.setTileByBoxIDAndIndex(2,5,"8")
+        self.assertEqual(b.getTile(8,1), "8")
+
     def test_getRow(self):
         m2 = Board("board6.txt")
         m2.loadBoard()

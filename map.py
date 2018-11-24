@@ -32,6 +32,19 @@ class Board:
     # sets a tile
     def setTile(self, x, y, value): self.tiles[y][x] = value
 
+    # sets a tile by box ID and index
+    def setTileByBoxIDAndIndex(self, boxID, index, value):
+        x = boxID%3*3
+        y = int(boxID/3)*3
+
+        yi = int(index/3)
+        xi = index%3
+
+        x += xi
+        y += yi
+
+        self.setTile(x,y,value)
+
     # returns a list of all items in a given row, 0 through 8
     # starting from the top
     def getRow(self, row):
