@@ -29,6 +29,9 @@ class Map:
     # gets tile
     def getTile(self, x, y): return self.tiles[y][x]
 
+    # sets a tile
+    def setTile(self, x, y, value): self.tiles[y][x] = value
+
     # returns a list of all items in a given row, 0 through 8
     # starting from the top
     def getRow(self, row):
