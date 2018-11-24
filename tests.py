@@ -78,5 +78,17 @@ class TestMapMethods(unittest.TestCase):
         self.assertEqual(m.calculateBoxID(0,0), 0)
         self.assertEqual(m.calculateBoxID(7,8), 8)
         self.assertEqual(m.calculateBoxID(4,5), 4)
+
+    def test_removeImpossibles(self):
+        m2 = Map("map6.txt")
+        m2.loadMap()
+        m2.prepare()
+        # Nothing should be removed from a sure tile
+        self.assertEqual(m2.removeImpossibles(0,0),0)
+        self.assertEqual(m2.getTile(0,0), "7")
+        # Impossibles should be removed
+        self.assertEqual(m2.removeImpossibles(1,0),8)
+        self.assertEqual(m2.getTile(1,0), "4")
+
 if __name__ == '__main__':
     unittest.main()

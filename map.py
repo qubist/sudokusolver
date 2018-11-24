@@ -85,6 +85,39 @@ class Map:
 
     def calculateBoxID(self, x,y):
         return int(y/3)*3 + int(x/3)
+
+    # If the tile isn't sure, removes numbers from the tile
+    # which we see as sure in the current tile's column, row, or
+    # box. Returns number of numbers removed.
+    def removeImpossibles(self, x, y):
+        tile = self.getTile(x,y)
+        originalLength = len(tile)
+        # don't do anything and return 0 if tile is sure
+        if self.isSure(tile):
+            return 0
+        # add numbers we see to a big list
+        c = self.getColumn(x)
+        r = self.getRow(y)
+        b = self.getBox(self.calculateBoxID(x,y))
+        l = c + r + b
+        # strip unsure tiles from the list
+        l = [possib for possib in l if len(possib) == 1]
+        # walk through the list and remove numbers we find from
+        # current tile
+        for possib in l:
+            tile = tile.replace(possib,"")
+        self.setTile(x,y, tile)
+        return originalLength - len(tile)
+
+    def removeAll(self):
+        done = False
+        while not done:
+            c = 0
+            for y in range(9):
+                for x in range(9):
+                    c += self.removeImpossibles(x,y)
+            if c == 0: done = True
+
     # print out a map pretty
     def __str__(self):
         out = "\n"
