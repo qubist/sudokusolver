@@ -76,6 +76,9 @@ class Map:
                 if y[x] == ".": y[x] = "123456789"
                 x += 1
 
+    # returns whether the tile is "sure" (the tile has only one value)
+    def isSure(self,tile):
+        return len(tile)==1
     # print out a map pretty
     def __str__(self):
         out = "\n"

@@ -51,5 +51,12 @@ class TestMapMethods(unittest.TestCase):
         #print(m2.tiles[1])
         #print(m2)
         pass
+
+    def test_isSure(self):
+        m2 = Map("map6.txt")
+        m2.loadMap()
+        m2.prepare()
+        self.assertEqual(m2.isSure(m2.getTile(0,0)), True)
+        self.assertEqual(m2.isSure(m2.getTile(1,0)), False)
 if __name__ == '__main__':
     unittest.main()
