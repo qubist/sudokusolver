@@ -21,6 +21,27 @@ class TestBoardMethods(unittest.TestCase):
  . 7 . | 8 2 9 | 4 . 5
 ''')
 
+    def test_getTile(self):
+        b = Board("board6.txt")
+        b.loadBoard()
+        self.assertEqual(b.getTile(0,0), "7")
+        self.assertEqual(b.getTile(0,1), ".")
+        self.assertEqual(b.getTile(5,5), "3")
+        self.assertEqual(b.getTile(2,8), ".")
+        self.assertEqual(b.getTile(5,8), "9")
+
+
+    def test_setTile(self):
+        b = Board("board6.txt")
+        b.loadBoard()
+        b.setTile(0,5,"8")
+        self.assertEqual(b.getTile(0,5), "8")
+        b.setTile(0,5,"4")
+        self.assertEqual(b.getTile(0,5), "4")
+        b.setTile(8,8,"aligator")
+        self.assertEqual(b.getTile(8,8), "aligator")
+
+
     def test_setTileByBoxIDAndIndex(self):
         b = Board("board6.txt")
         b.loadBoard()
