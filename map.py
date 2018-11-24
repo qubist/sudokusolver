@@ -66,7 +66,7 @@ class Map:
         xEnd = x + 3
         while y < yEnd:
             while x < xEnd:
-                out += self.getTile(x,y)
+                out += [self.getTile(x,y)]
                 x += 1
             y+= 1
             x = xStart
