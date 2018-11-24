@@ -1,5 +1,5 @@
 import unittest
-from board import *
+from sudokusolver import *
 
 class TestBoardMethods(unittest.TestCase):
 
