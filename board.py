@@ -2,11 +2,11 @@ class OffBoardException(Exception):
     pass
 
 class Board:
-    def __init__(self, filename):
-        self.filename = filename
-        self.tiles = [["\0" for x in range(9)] for y in range(9)]
+    def __init__(self):
+        self.initializeBoard()
 
-    def loadBoard(self):
+    def loadBoard(self,filename):
+        self.filename = filename
         try:
             file = open(self.filename)
             y = 0
@@ -25,6 +25,9 @@ class Board:
         except:
             print(f"Could not load map file {self.filename}")
             exit(1)
+
+    def initializeBoard(self):
+        self.tiles = [["." for x in range(9)] for y in range(9)]
 
     # gets tile
     def getTile(self, x, y): return self.tiles[y][x]
