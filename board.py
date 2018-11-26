@@ -1,12 +1,15 @@
+import random
+import copy
+
 class OffBoardException(Exception):
     pass
 
 class Board:
-    def __init__(self, filename):
-        self.filename = filename
-        self.tiles = [["\0" for x in range(9)] for y in range(9)]
+    def __init__(self):
+        self.initializeBoard()
 
-    def loadBoard(self):
+    def loadBoard(self,filename):
+        self.filename = filename
         try:
             file = open(self.filename)
             y = 0
@@ -25,6 +28,9 @@ class Board:
         except:
             print(f"Could not load map file {self.filename}")
             exit(1)
+
+    def initializeBoard(self):
+        self.tiles = [["." for x in range(9)] for y in range(9)]
 
     # gets tile
     def getTile(self, x, y): return self.tiles[y][x]
@@ -208,6 +214,70 @@ class Board:
                 else:
                     print("no change")
             # import time; time.sleep(.15) # option for looking cool
+
+    # checks to see if a list is a legal (i.e. no dups)
+    def isLegalList(self,l):
+        counts = {"1":0,"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0}
+        for tile in l:
+            if len(tile) == 1 and tile != ".":
+                counts[tile] += 1
+        for count in list(counts.values()):
+            if count > 1: return False
+        return True
+
+    def isLegalRow(self,y):
+        return self.isLegalList(self.getRow(y))
+
+    def isLegalColumn(self,x):
+        return self.isLegalList(self.getColumn(x))
+
+    def isLegalBox(self,boxID):
+        return self.isLegalList(self.getBox(boxID))
+
+    # check if board is legal by checking all the rows and columns and boxes
+    def isLegalBoard(self):
+        for x in range(9):
+            if not self.isLegalRow(x): return False
+        for y in range(9):
+            if not self.isLegalColumn(y): return False
+        for boxID in range(9):
+            if not self.isLegalBox(boxID): return False
+        return True
+
+    # create a random board by putting down titles randomly and
+    # backtracking if they result in an illegal board
+    def randomBoard(self, count):
+        self.initializeBoard()
+        t = 0
+        while t < count:
+            x = random.randint(0,8)
+            y = random.randint(0,8)
+            v = self.getTile(x,y)
+            if v != ".": continue
+            self.setTile(x,y,f"{random.randint(1,9)}")
+            if not self.isLegalBoard():
+                self.setTile(x,y,f".")
+                continue
+            t += 1
+
+    # make sure the board was actually solved
+    def isSolved(self):
+        for x in range(9):
+            for y in range(9):
+                v = self.getTile(x,y)
+                if len(v)!=1 or v == ".": return False
+        return True
+
+    # makes random boards of a given inital tile count until it finds a solvable one
+    def make(self, count):
+        while True:
+            self.randomBoard(count)
+            orig = copy.deepcopy(self.tiles)
+            self.prepare()
+            self.reduce(False)
+            if self.isSolved():
+                self.tiles = orig
+                break
 
     # print out a map pretty
     def __str__(self):
