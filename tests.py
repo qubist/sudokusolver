@@ -166,5 +166,10 @@ class TestBoardMethods(unittest.TestCase):
         b.setTile(0,1,"1")
         self.assertFalse(b.isLegalBoard())
 
+    def test_randomBoard(self):
+        b = Board()
+        b.randomBoard(30)
+        self.assertTrue(b.isLegalBoard())
+
 if __name__ == '__main__':
     unittest.main()

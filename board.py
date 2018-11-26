@@ -1,3 +1,4 @@
+import random
 class OffBoardException(Exception):
     pass
 
@@ -240,6 +241,22 @@ class Board:
         for boxID in range(9):
             if not self.isLegalBox(boxID): return False
         return True
+
+    # create a random board by putting down titles randomly and
+    # backtracking if they result in an illegal board
+    def randomBoard(self, count):
+        self.initializeBoard()
+        t = 0
+        while t < count:
+            x = random.randint(0,8)
+            y = random.randint(0,8)
+            v = self.getTile(x,y)
+            if v != ".": continue
+            self.setTile(x,y,f"{random.randint(1,9)}")
+            if not self.isLegalBoard():
+                self.setTile(x,y,f".")
+                continue
+            t += 1
 
     # print out a map pretty
     def __str__(self):
