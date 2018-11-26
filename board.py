@@ -212,6 +212,35 @@ class Board:
                     print("no change")
             # import time; time.sleep(.15) # option for looking cool
 
+    # checks to see if a list is a legal (i.e. no dups)
+    def isLegalList(self,l):
+        counts = {"1":0,"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0}
+        for tile in l:
+            if len(tile) == 1 and tile != ".":
+                counts[tile] += 1
+        for count in list(counts.values()):
+            if count > 1: return False
+        return True
+
+    def isLegalRow(self,y):
+        return self.isLegalList(self.getRow(y))
+
+    def isLegalColumn(self,x):
+        return self.isLegalList(self.getColumn(x))
+
+    def isLegalBox(self,boxID):
+        return self.isLegalList(self.getBox(boxID))
+
+    # check if board is legal by checking all the rows and columns and boxes
+    def isLegalBoard(self):
+        for x in range(9):
+            if not self.isLegalRow(x): return False
+        for y in range(9):
+            if not self.isLegalColumn(y): return False
+        for boxID in range(9):
+            if not self.isLegalBox(boxID): return False
+        return True
+
     # print out a map pretty
     def __str__(self):
         out = "\n"

@@ -149,5 +149,22 @@ class TestBoardMethods(unittest.TestCase):
         b.prepare()
         b.reduce(False)
 
+    def test_isLegalList(self):
+        b = Board()
+        self.assertTrue(b.isLegalList(['.', '.', '5', '.', '.', '.', '6', '.', '.']))
+        self.assertFalse(b.isLegalList(['5', '.', '5', '.', '.', '.', '6', '.', '.']))
+        self.assertTrue(b.isLegalList(['123', '.', '5', '.', '.', '.', '6', '.', '.']))
+
+    def test_isLegalBoard(self):
+        b = Board()
+        b.loadBoard("board70.txt")
+        b.prepare()
+        self.assertTrue(b.isLegalBoard())
+        b.reduce(False)
+        self.assertTrue(b.isLegalBoard())
+        b.setTile(0,0,"1")
+        b.setTile(0,1,"1")
+        self.assertFalse(b.isLegalBoard())
+
 if __name__ == '__main__':
     unittest.main()
