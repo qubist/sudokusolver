@@ -1,4 +1,6 @@
 import random
+import copy
+
 class OffBoardException(Exception):
     pass
 
@@ -257,6 +259,25 @@ class Board:
                 self.setTile(x,y,f".")
                 continue
             t += 1
+
+    # make sure the board was actually solved
+    def isSolved(self):
+        for x in range(9):
+            for y in range(9):
+                v = self.getTile(x,y)
+                if len(v)!=1 or v == ".": return False
+        return True
+
+    # makes random boards of a given inital tile count until it finds a solvable one
+    def make(self, count):
+        while True:
+            self.randomBoard(count)
+            orig = copy.deepcopy(self.tiles)
+            self.prepare()
+            self.reduce(False)
+            if self.isSolved():
+                self.tiles = orig
+                break
 
     # print out a map pretty
     def __str__(self):

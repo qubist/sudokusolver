@@ -171,5 +171,13 @@ class TestBoardMethods(unittest.TestCase):
         b.randomBoard(30)
         self.assertTrue(b.isLegalBoard())
 
+
+    def test_make(self):
+        b = Board()
+        # may take a while to run!
+        b.make(30)
+        self.assertTrue(b.isLegalBoard())
+        print(b)
+
 if __name__ == '__main__':
     unittest.main()
