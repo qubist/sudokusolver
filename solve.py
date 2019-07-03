@@ -3,8 +3,8 @@ from board import *
 
 # takes string filename and returns solved
 def solve(file):
-    b = Board(file)
-    b.loadBoard()
+    b = Board()
+    b.loadBoard(file)
     b.prepare()
     b.reduce()
     return b
